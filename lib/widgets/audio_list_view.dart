@@ -32,17 +32,13 @@ class AudioListView extends ConsumerWidget {
                       String backGroundImage = ref
                           .read(selectedAudioPosterUrlProvider.notifier)
                           .state = audio.imageUrl;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => DetailPage(
-                                image: backGroundImage,
-                                deviceWidth: deviceWidth,
-                                deviceHeight: deviceHeight,
-                                audio: audio,
-                              )),
-                        ),
-                      );
+                      Navigator.pushNamed(context, DetailPage.route,
+                          arguments: {
+                            'image': backGroundImage,
+                            'deviceWidth': deviceWidth,
+                            'deviceHeight': deviceHeight,
+                            'audio': audio,
+                          });
                     },
                     child: AudioTile(
                         height: deviceHeight * 0.2,

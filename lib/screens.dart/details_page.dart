@@ -50,21 +50,22 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            BackGroundWidget(
-              deviceHeight: widget.deviceHeight,
-              selectedAudioPosterUrl: widget.image,
-              deviceWidth: widget.deviceWidth,
-            ),
-            DetailForeGround(
-                audio: widget.audio,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Stack(
+            children: <Widget>[
+              BackGroundWidget(
                 deviceHeight: widget.deviceHeight,
-                deviceWidth: widget.deviceWidth),
-          ],
+                selectedAudioPosterUrl: widget.image,
+                deviceWidth: widget.deviceWidth,
+              ),
+              DetailForeGround(
+                  audio: widget.audio,
+                  deviceHeight: widget.deviceHeight,
+                  deviceWidth: widget.deviceWidth),
+            ],
+          ),
         ),
       ),
     );

@@ -34,24 +34,30 @@ class _MainMobilePageState extends ConsumerState<MainMobilePage> {
     final mainPageData = ref.watch(mainPageDataControllerProvider);
     final selectedAudioPosterUrl = ref.watch(selectedAudioPosterUrlProvider);
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
-      body: SizedBox(
-        height: deviceHeight,
-        width: deviceWidth,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            BackGroundWidget(
-                deviceHeight: deviceHeight,
-                deviceWidth: deviceWidth,
-                selectedAudioPosterUrl: selectedAudioPosterUrl),
-            ForeGround(
-                deviceHeight: deviceHeight,
-                deviceWidth: deviceWidth,
-                mainPageData: mainPageData),
-          ],
+    return RefreshIndicator(
+      onRefresh: () =>
+          ref.read(mainPageDataControllerProvider.notifier).getAudios(),
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.black,
+          body: SizedBox(
+            height: deviceHeight,
+            width: deviceWidth,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                BackGroundWidget(
+                    deviceHeight: deviceHeight,
+                    deviceWidth: deviceWidth,
+                    selectedAudioPosterUrl: selectedAudioPosterUrl),
+                ForeGround(
+                    deviceHeight: deviceHeight,
+                    deviceWidth: deviceWidth,
+                    mainPageData: mainPageData),
+              ],
+            ),
+          ),
         ),
       ),
     );

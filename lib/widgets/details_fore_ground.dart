@@ -15,9 +15,10 @@ class DetailForeGround extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            height: deviceHeight / 2,
+            height: deviceHeight / 1.8,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(

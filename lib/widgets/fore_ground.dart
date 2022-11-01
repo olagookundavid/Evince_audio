@@ -13,8 +13,7 @@ class ForeGround extends StatelessWidget {
   final MainPageData mainPageData;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, deviceHeight * 0.02, 0, 0),
+    return SizedBox(
       width: deviceWidth * 0.88,
       child: Column(
         mainAxisSize: MainAxisSize.max,

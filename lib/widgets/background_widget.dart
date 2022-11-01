@@ -34,7 +34,7 @@ class BackGroundWidget extends StatelessWidget {
       return Container(
         height: deviceHeight,
         width: deviceWidth,
-        color: Colors.black,
+        color: Colors.blueAccent.withOpacity(.4),
       );
     }
   }

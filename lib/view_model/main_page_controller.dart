@@ -12,11 +12,20 @@ class MainPageDataController extends StateNotifier<MainPageData> {
   }
   final AudioService audioService = AudioService(http: HTTPService(dio: Dio()));
 
-  Future<void> getAudios() async {
+  Future<void> getAudios({String? searchTerm}) async {
     try {
       state = state.copyWith(status: Status.loading);
       List<Audio> audios = await audioService.getAudios();
-      state = state.copyWith(status: Status.success, audios: audios);
+      if (searchTerm == null || searchTerm == '') {
+        state = state.copyWith(status: Status.success, audios: audios);
+      } else {
+        List<Audio> filteredAudios = audios
+            .where((Audio audio) =>
+                audio.title.toLowerCase().contains(searchTerm.toLowerCase()))
+            .toList();
+        audios = filteredAudios;
+        state = state.copyWith(status: Status.success, audios: audios);
+      }
     } catch (e) {
       state = state.copyWith(status: Status.error, error: e.toString());
     }
